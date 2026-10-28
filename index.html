@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="财报日历">
+<meta name="theme-color" content="#f3f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1318" media="(prefers-color-scheme: dark)">
+<title>财报日历</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: 一列议程表——顶部是「下一场」，下面按北京日期分组，最后是刚发布的 */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --fg: #15202b;
+  --muted: #5d6b78;
+  --line: #dde3e9;
+  --accent: #1f4fd1;
+  --hold: #a35a00;   --hold-bg: #fdf0dc;
+  --watch: #0d7466;  --watch-bg: #ddf3ef;
+  --tech: #5a4bb5;   --tech-bg: #ebe8fb;
+  --up: #12814a; --down: #c2362c;
+  --font-body: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0e1318; --surface: #161d24; --fg: #e4e9ee; --muted: #8d9aa7; --line: #26313b; --accent: #7aa2ff;
+  --hold: #f0b25c; --hold-bg: #3a2a12; --watch: #5fd1bd; --watch-bg: #10302b; --tech: #b3a8ff; --tech-bg: #2a2550;
+  --up: #4cc887; --down: #ff7a6e; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0e1318; --surface: #161d24; --fg: #e4e9ee; --muted: #8d9aa7; --line: #26313b; --accent: #7aa2ff;
+  --hold: #f0b25c; --hold-bg: #3a2a12; --watch: #5fd1bd; --watch-bg: #10302b; --tech: #b3a8ff; --tech-bg: #2a2550;
+  --up: #4cc887; --down: #ff7a6e; color-scheme: dark }
+
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.55; }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 20px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 22px; }
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+h1 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: .02em; }
+.updated { color: var(--muted); font-size: 12.5px; }
+
+/* 下一场 */
+.next { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px; display: grid; gap: 6px; }
+.next .label { font-size: 12px; color: var(--muted); letter-spacing: .08em; }
+.next .who { font-size: 20px; font-weight: 700; text-wrap: balance; }
+.next .when { font-size: 14px; color: var(--muted); }
+.countdown { font-family: var(--font-mono); font-size: 34px; font-weight: 600; color: var(--accent); line-height: 1.15; font-variant-numeric: tabular-nums; }
+
+/* 筛选 */
+.filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.filters button { font: inherit; font-size: 13.5px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); cursor: pointer; }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.filters button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* 议程 */
+.day { display: grid; gap: 8px; }
+.day h2 { margin: 0; font-size: 13px; font-weight: 500; color: var(--muted); display: flex; gap: 10px; align-items: baseline; }
+.day h2 strong { color: var(--fg); font-size: 15px; font-weight: 700; }
+.list { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.row { display: grid; grid-template-columns: 58px 1fr auto; gap: 12px; align-items: center; padding: 11px 14px; }
+.row + .row { border-top: 1px solid var(--line); }
+.row .t { font-family: var(--font-mono); font-size: 15px; font-weight: 500; }
+.row .t.unk { color: var(--muted); font-size: 13px; }
+.row .main { min-width: 0; display: grid; gap: 2px; }
+.row .name { font-weight: 500; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.row .sym { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); }
+.row .meta { font-size: 12.5px; color: var(--muted); }
+.row .left { font-family: var(--font-mono); font-size: 13px; color: var(--muted); text-align: right; white-space: nowrap; }
+.row.soon .left { color: var(--accent); font-weight: 600; }
+.chip { font-size: 11.5px; padding: 1px 7px; border-radius: 5px; font-weight: 500; }
+.chip.持仓 { color: var(--hold); background: var(--hold-bg); }
+.chip.观察 { color: var(--watch); background: var(--watch-bg); }
+.chip.科技龙头 { color: var(--tech); background: var(--tech-bg); }
+.est { font-size: 11.5px; color: var(--muted); border: 1px dashed var(--line); border-radius: 5px; padding: 0 6px; }
+
+.recent .row { grid-template-columns: 1fr auto; }
+.surprise.up { color: var(--up); } .surprise.down { color: var(--down); }
+
+.notes { font-size: 12.5px; color: var(--muted); display: grid; gap: 4px; max-width: 65ch; }
+.notes p { margin: 0; }
+.empty { color: var(--muted); font-size: 14px; padding: 14px; }
+@media (max-width: 420px) { .countdown { font-size: 28px; } .row { grid-template-columns: 50px 1fr auto; gap: 10px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>财报日历</h1>
+    <span class="updated" id="updated">正在读取数据…</span>
+  </header>
+
+  <section class="next" id="next" aria-live="polite">
+    <span class="label">下一场 · 北京时间</span>
+    <span class="who" id="next-who">—</span>
+    <span class="countdown" id="next-cd">--:--:--</span>
+    <span class="when" id="next-when"></span>
+  </section>
+
+  <nav class="filters" id="filters" aria-label="分组筛选">
+    <button type="button" id="f-all" data-g="全部" aria-pressed="true">全部</button>
+    <button type="button" id="f-hold" data-g="持仓" aria-pressed="false">持仓</button>
+    <button type="button" id="f-watch" data-g="观察" aria-pressed="false">观察</button>
+    <button type="button" id="f-tech" data-g="科技龙头" aria-pressed="false">科技龙头</button>
+  </nav>
+
+  <main id="agenda" style="display:grid;gap:18px"></main>
+
+  <section class="day recent" id="recent-wrap" hidden>
+    <h2><strong>最近已发布</strong>近 10 天</h2>
+    <div class="list" id="recent"></div>
+  </section>
+
+  <footer class="notes">
+    <p>所有时间都是北京时间。美股盘后发布（美东 16:00 后）对应北京次日凌晨 4–6 点；11 月 1 日美国结束夏令时后会晚一小时，页面已自动换算。</p>
+    <p>标「预估」的是公司还没正式公布，日期是数据源按往年规律估的，可能会变。「时段未定」表示只知道日期，美股大多在盘后发，按北京时间算就是次日早上。</p>
+    <p>数据来自 Yahoo Finance，每天北京时间早上自动更新一次。</p>
+  </footer>
+</div>
+
+<script>
+const BJ = "Asia/Shanghai";
+const WD = ["周日","周一","周二","周三","周四","周五","周六"];
+let DATA = null, FILTER = "全部";
+try { FILTER = localStorage.getItem("ec-filter") || "全部"; } catch (e) {}
+
+const bjParts = d => {
+  const p = Object.fromEntries(new Intl.DateTimeFormat("en-CA", { timeZone: BJ, year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" }).formatToParts(d).map(x => [x.type, x.value]));
+  return { ymd: `${p.year}-${p.month}-${p.day}`, m: +p.month, d: +p.day, hm: `${p.hour}:${p.minute}`,
+    wd: WD[new Date(`${p.year}-${p.month}-${p.day}T12:00:00Z`).getUTCDay()] };
+};
+const dayDiff = (a, b) => Math.round((Date.parse(a + "T00:00:00Z") - Date.parse(b + "T00:00:00Z")) / 864e5);
+const relName = n => n === 0 ? "今天" : n === 1 ? "明天" : n === 2 ? "后天" : n < 7 ? `${n} 天后` : "";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function left(ms) {
+  if (ms <= 0) return "已到时间";
+  const h = Math.floor(ms / 36e5), d = Math.floor(h / 24);
+  if (d >= 2) return `${d} 天`;
+  return `${h} 小时 ${Math.floor(ms % 36e5 / 6e4)} 分`;
+}
+function hms(ms) {
+  if (ms <= 0) return "已发布 / 即将公布";
+  const s = Math.floor(ms / 1000), d = Math.floor(s / 86400);
+  const pad = n => String(n).padStart(2, "0");
+  const t = `${pad(Math.floor(s % 86400 / 3600))}:${pad(Math.floor(s % 3600 / 60))}:${pad(s % 60)}`;
+  return d ? `${d}天 ${t}` : t;
+}
+// 时段未定的美股：按「盘后」估一个北京时间，用来排序和倒计时（美东当天 16:00）
+function effectiveTime(it) {
+  const n = it.next;
+  if (n.session !== "时段未公布" || it.symbol.endsWith(".HK")) return new Date(n.utc);
+  const guess = new Date(n.utc); // 15:00 ET 占位 → 推到 16:00 ET
+  return new Date(guess.getTime() + 36e5);
+}
+
+function upcoming() {
+  const now = Date.now();
+  return DATA.items.filter(it => it.next && effectiveTime(it).getTime() > now - 6 * 36e5)
+    .filter(it => FILTER === "全部" || it.group === FILTER)
+    .sort((a, b) => effectiveTime(a) - effectiveTime(b));
+}
+
+function renderAgenda() {
+  const box = document.getElementById("agenda");
+  const list = upcoming();
+  const today = bjParts(new Date()).ymd;
+  if (!list.length) { box.innerHTML = `<div class="list"><div class="empty">这个分组暂时没有即将发布的财报。</div></div>`; return; }
+  const byDay = new Map();
+  for (const it of list) {
+    const p = bjParts(effectiveTime(it));
+    if (!byDay.has(p.ymd)) byDay.set(p.ymd, { p, items: [] });
+    byDay.get(p.ymd).items.push(it);
+  }
+  let html = "";
+  for (const [ymd, { p, items }] of byDay) {
+    const rel = relName(dayDiff(ymd, today));
+    html += `<section class="day"><h2><strong>${p.m}月${p.d}日 ${p.wd}</strong>${rel}</h2><div class="list">`;
+    for (const it of items) {
+      const n = it.next, t = effectiveTime(it), unk = n.session === "时段未公布";
+      const ms = t - Date.now();
+      const sess = unk ? `美东 ${n.local_date.slice(5).replace("-", "/")}，时段未定` : n.session;
+      html += `<div class="row${ms < 36 * 36e5 ? " soon" : ""}" data-t="${t.getTime()}">
+        <span class="t${unk ? " unk" : ""}">${unk ? "约" + bjParts(t).hm : bjParts(t).hm}</span>
+        <div class="main"><div class="name">${esc(it.name)} <span class="sym">${esc(it.symbol)}</span>
+          <span class="chip ${esc(it.group)}">${esc(it.group)}</span>${n.confirmed ? "" : '<span class="est">预估</span>'}</div>
+          <div class="meta">${esc(sess)}</div></div>
+        <span class="left">${left(ms)}</span></div>`;
+    }
+    html += `</div></section>`;
+  }
+  box.innerHTML = html;
+}
+
+function renderRecent() {
+  const rec = DATA.items.filter(it => it.last && it.last.recent && (FILTER === "全部" || it.group === FILTER))
+    .sort((a, b) => b.last.utc.localeCompare(a.last.utc));
+  const wrap = document.getElementById("recent-wrap");
+  wrap.hidden = !rec.length;
+  document.getElementById("recent").innerHTML = rec.map(it => {
+    const s = it.last.surprise, cls = s == null ? "" : s >= 0 ? "up" : "down";
+    const p = bjParts(new Date(it.last.utc));
+    return `<div class="row"><div class="main"><div class="name">${esc(it.name)} <span class="sym">${esc(it.symbol)}</span>
+      <span class="chip ${esc(it.group)}">${esc(it.group)}</span></div>
+      <div class="meta">北京 ${p.m}月${p.d}日发布 · 每股收益 ${it.last.eps ?? "—"}，预期 ${it.last.est ?? "—"}</div></div>
+      <span class="left surprise ${cls}">${s == null ? "" : (s >= 0 ? "超预期 +" : "低于预期 ") + s.toFixed(1) + "%"}</span></div>`;
+  }).join("");
+}
+
+function tick() {
+  if (!DATA) return;
+  const list = upcoming().filter(it => effectiveTime(it) > Date.now());
+  const who = document.getElementById("next-who"), cd = document.getElementById("next-cd"), when = document.getElementById("next-when");
+  if (!list.length) { who.textContent = "暂无"; cd.textContent = "--:--:--"; when.textContent = ""; return; }
+  const first = effectiveTime(list[0]).getTime();
+  const same = list.filter(it => Math.abs(effectiveTime(it) - first) < 36e5);
+  who.textContent = same.map(it => `${it.name}`).join("、");
+  cd.textContent = hms(first - Date.now());
+  const p = bjParts(new Date(first));
+  const unk = same.some(it => it.next.session === "时段未公布");
+  when.textContent = `${p.m}月${p.d}日 ${p.wd} ${unk ? "约 " : ""}${p.hm} · ${same[0].next.session === "时段未公布" ? "时段未定，按盘后估算" : same[0].next.session}`;
+  document.querySelectorAll("#agenda .row").forEach(r => {
+    const ms = +r.dataset.t - Date.now();
+    r.querySelector(".left").textContent = left(ms);
+  });
+}
+
+function setFilter(g) {
+  FILTER = g;
+  try { localStorage.setItem("ec-filter", g); } catch (e) {}
+  document.querySelectorAll("#filters button").forEach(b => b.setAttribute("aria-pressed", b.dataset.g === g));
+  renderAgenda(); renderRecent(); tick();
+}
+document.getElementById("filters").addEventListener("click", e => { const b = e.target.closest("button"); if (b) setFilter(b.dataset.g); });
+
+fetch("data.json", { cache: "no-store" }).then(r => r.json()).then(d => {
+  DATA = d;
+  document.getElementById("updated").textContent = `数据更新于 ${d.updated_bj}`;
+  setFilter(["全部","持仓","观察","科技龙头"].includes(FILTER) ? FILTER : "全部");
+  setInterval(tick, 1000);
+}).catch(() => {
+  document.getElementById("updated").textContent = "数据读取失败，请稍后刷新";
+});
+</script>
+
+</body>
+</html>
