@@ -1,6 +1,6 @@
 {
- "updated_utc": "2026-10-29T01:57:46.726952+00:00",
- "updated_bj": "2026-10-29 09:57",
+ "updated_utc": "2026-10-30T02:11:06.644266+00:00",
+ "updated_bj": "2026-10-30 10:11",
  "items": [
   {
    "symbol": "RDDT",
@@ -12,15 +12,15 @@
     "local_date": "2026-10-29",
     "session": "美股盘后",
     "confirmed": true,
-    "eps_est": 1.33
+    "eps_est": null
    },
    "last": {
-    "utc": "2026-07-30T20:00:00+00:00",
-    "bj": "2026-07-31",
-    "eps": 1.25,
-    "est": 0.96,
-    "surprise": 29.56,
-    "recent": false
+    "utc": "2026-10-29T20:00:00+00:00",
+    "bj": "2026-10-30",
+    "eps": 1.4,
+    "est": 1.33,
+    "surprise": 5.6,
+    "recent": true
    }
   },
   {
@@ -82,7 +82,7 @@
     "bj": "2026-08-05",
     "eps": 0.18,
     "est": 0.16,
-    "surprise": 13.61,
+    "surprise": 12.8,
     "recent": false
    }
   },
@@ -125,21 +125,14 @@
    "symbol": "CROX",
    "name": "Crocs",
    "group": "观察",
-   "next": {
-    "utc": "2026-10-29T12:30:00+00:00",
-    "bj": "2026-10-29 20:30",
-    "local_date": "2026-10-29",
-    "session": "美股盘前",
-    "confirmed": true,
-    "eps_est": 3.31
-   },
+   "next": null,
    "last": {
-    "utc": "2026-07-30T11:00:00+00:00",
-    "bj": "2026-07-30",
-    "eps": 4.55,
-    "est": 4.35,
-    "surprise": 4.65,
-    "recent": false
+    "utc": "2026-10-29T11:00:00+00:00",
+    "bj": "2026-10-29",
+    "eps": 3.69,
+    "est": 3.31,
+    "surprise": 11.5,
+    "recent": true
    }
   },
   {
@@ -152,15 +145,15 @@
     "local_date": "2026-10-29",
     "session": "美股盘后",
     "confirmed": true,
-    "eps_est": 0.4
+    "eps_est": null
    },
    "last": {
-    "utc": "2026-07-23T20:00:00+00:00",
-    "bj": "2026-07-24",
-    "eps": 0.42,
-    "est": 0.22,
-    "surprise": 94.59,
-    "recent": false
+    "utc": "2026-10-29T20:00:00+00:00",
+    "bj": "2026-10-30",
+    "eps": 0.52,
+    "est": 0.4,
+    "surprise": 30.47,
+    "recent": true
    }
   },
   {
@@ -189,12 +182,12 @@
    "name": "微软",
    "group": "科技龙头",
    "next": {
-    "utc": "2026-10-28T20:00:00+00:00",
-    "bj": "2026-10-29 04:00",
-    "local_date": "2026-10-28",
-    "session": "美股盘后",
-    "confirmed": true,
-    "eps_est": null
+    "utc": "2027-01-27T20:00:00+00:00",
+    "bj": "2027-01-28 04:00",
+    "local_date": "2027-01-27",
+    "session": "时段未公布",
+    "confirmed": false,
+    "eps_est": 4.82
    },
    "last": {
     "utc": "2026-10-28T20:00:00+00:00",
@@ -210,12 +203,12 @@
    "name": "谷歌",
    "group": "科技龙头",
    "next": {
-    "utc": "2026-10-28T20:00:00+00:00",
-    "bj": "2026-10-29 04:00",
-    "local_date": "2026-10-28",
-    "session": "美股盘后",
-    "confirmed": true,
-    "eps_est": null
+    "utc": "2027-02-03T20:00:00+00:00",
+    "bj": "2027-02-04 04:00",
+    "local_date": "2027-02-03",
+    "session": "时段未公布",
+    "confirmed": false,
+    "eps_est": 3.21
    },
    "last": {
     "utc": "2026-10-28T20:00:00+00:00",
@@ -236,15 +229,15 @@
     "local_date": "2026-10-29",
     "session": "美股盘后",
     "confirmed": true,
-    "eps_est": 1.96
+    "eps_est": null
    },
    "last": {
-    "utc": "2026-07-30T20:00:00+00:00",
-    "bj": "2026-07-31",
-    "eps": 5.75,
-    "est": 1.82,
-    "surprise": 215.14,
-    "recent": false
+    "utc": "2026-10-29T20:00:00+00:00",
+    "bj": "2026-10-30",
+    "eps": 1.89,
+    "est": 1.96,
+    "surprise": -3.54,
+    "recent": true
    }
   },
   {
@@ -257,14 +250,14 @@
     "local_date": "2027-01-27",
     "session": "时段未公布",
     "confirmed": false,
-    "eps_est": 8.34
+    "eps_est": 8.33
    },
    "last": {
     "utc": "2026-10-21T20:00:00+00:00",
     "bj": "2026-10-22",
     "eps": 3.83,
-    "est": 5.46,
-    "surprise": -29.91,
+    "est": 5.48,
+    "surprise": -30.15,
     "recent": true
    }
   },
