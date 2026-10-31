@@ -1,18 +1,18 @@
 {
- "updated_utc": "2026-10-30T02:11:06.644266+00:00",
- "updated_bj": "2026-10-30 10:11",
+ "updated_utc": "2026-10-31T01:52:44.024565+00:00",
+ "updated_bj": "2026-10-31 09:52",
  "items": [
   {
    "symbol": "RDDT",
    "name": "Reddit",
    "group": "持仓",
    "next": {
-    "utc": "2026-10-29T20:00:00+00:00",
-    "bj": "2026-10-30 04:00",
-    "local_date": "2026-10-29",
-    "session": "美股盘后",
-    "confirmed": true,
-    "eps_est": null
+    "utc": "2027-02-04T20:00:00+00:00",
+    "bj": "2027-02-05 04:00",
+    "local_date": "2027-02-04",
+    "session": "时段未公布",
+    "confirmed": false,
+    "eps_est": 1.83
    },
    "last": {
     "utc": "2026-10-29T20:00:00+00:00",
@@ -54,7 +54,7 @@
     "local_date": "2026-11-18",
     "session": "港股收盘后",
     "confirmed": true,
-    "eps_est": 7.23
+    "eps_est": 7.22
    },
    "last": {
     "utc": "2026-08-12T08:00:00+00:00",
@@ -82,7 +82,7 @@
     "bj": "2026-08-05",
     "eps": 0.18,
     "est": 0.16,
-    "surprise": 12.8,
+    "surprise": 13.61,
     "recent": false
    }
   },
@@ -125,7 +125,14 @@
    "symbol": "CROX",
    "name": "Crocs",
    "group": "观察",
-   "next": null,
+   "next": {
+    "utc": "2027-02-11T12:00:00+00:00",
+    "bj": "2027-02-11 20:00",
+    "local_date": "2027-02-11",
+    "session": "美股盘前",
+    "confirmed": false,
+    "eps_est": 3.4
+   },
    "last": {
     "utc": "2026-10-29T11:00:00+00:00",
     "bj": "2026-10-29",
@@ -140,19 +147,19 @@
    "name": "英特尔",
    "group": "观察",
    "next": {
-    "utc": "2026-10-29T20:00:00+00:00",
-    "bj": "2026-10-30 04:00",
-    "local_date": "2026-10-29",
-    "session": "美股盘后",
-    "confirmed": true,
-    "eps_est": null
+    "utc": "2027-01-28T20:00:00+00:00",
+    "bj": "2027-01-29 04:00",
+    "local_date": "2027-01-28",
+    "session": "时段未公布",
+    "confirmed": false,
+    "eps_est": 0.24
    },
    "last": {
     "utc": "2026-10-29T20:00:00+00:00",
     "bj": "2026-10-30",
     "eps": 0.52,
     "est": 0.4,
-    "surprise": 30.47,
+    "surprise": 30.29,
     "recent": true
    }
   },
@@ -187,7 +194,7 @@
     "local_date": "2027-01-27",
     "session": "时段未公布",
     "confirmed": false,
-    "eps_est": 4.82
+    "eps_est": 4.86
    },
    "last": {
     "utc": "2026-10-28T20:00:00+00:00",
@@ -224,12 +231,12 @@
    "name": "亚马逊",
    "group": "科技龙头",
    "next": {
-    "utc": "2026-10-29T20:00:00+00:00",
-    "bj": "2026-10-30 04:00",
-    "local_date": "2026-10-29",
-    "session": "美股盘后",
-    "confirmed": true,
-    "eps_est": null
+    "utc": "2027-02-04T20:00:00+00:00",
+    "bj": "2027-02-05 04:00",
+    "local_date": "2027-02-04",
+    "session": "时段未公布",
+    "confirmed": false,
+    "eps_est": 2.46
    },
    "last": {
     "utc": "2026-10-29T20:00:00+00:00",
