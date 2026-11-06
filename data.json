@@ -1,6 +1,6 @@
 {
- "updated_utc": "2026-11-05T02:52:57.462823+00:00",
- "updated_bj": "2026-11-05 10:52",
+ "updated_utc": "2026-11-06T02:52:01.839157+00:00",
+ "updated_bj": "2026-11-06 10:52",
  "items": [
   {
    "symbol": "RDDT",
@@ -69,7 +69,14 @@
    "symbol": "CRCL",
    "name": "Circle",
    "group": "持仓",
-   "next": null,
+   "next": {
+    "utc": "2027-02-24T13:00:00+00:00",
+    "bj": "2027-02-24 21:00",
+    "local_date": "2027-02-24",
+    "session": "美股盘前",
+    "confirmed": false,
+    "eps_est": 0.34
+   },
    "last": {
     "utc": "2026-11-04T11:00:00+00:00",
     "bj": "2026-11-04",
@@ -103,15 +110,15 @@
     "local_date": "2026-11-05",
     "session": "美股盘后",
     "confirmed": true,
-    "eps_est": 0.34
+    "eps_est": null
    },
    "last": {
-    "utc": "2026-08-06T20:00:00+00:00",
-    "bj": "2026-08-07",
-    "eps": 0.29,
-    "est": 0.27,
-    "surprise": 7.5,
-    "recent": false
+    "utc": "2026-11-05T21:00:00+00:00",
+    "bj": "2026-11-06",
+    "eps": 0.38,
+    "est": 0.34,
+    "surprise": 10.61,
+    "recent": true
    }
   },
   {
