@@ -1,6 +1,6 @@
 {
- "updated_utc": "2026-11-09T02:04:05.846971+00:00",
- "updated_bj": "2026-11-09 10:04",
+ "updated_utc": "2026-11-10T04:22:28.853690+00:00",
+ "updated_bj": "2026-11-10 12:22",
  "items": [
   {
    "symbol": "RDDT",
@@ -20,7 +20,7 @@
     "eps": 1.4,
     "est": 1.33,
     "surprise": 5.6,
-    "recent": true
+    "recent": false
    }
   },
   {
@@ -54,7 +54,7 @@
     "local_date": "2026-11-18",
     "session": "港股收盘后",
     "confirmed": true,
-    "eps_est": 7.22
+    "eps_est": 7.21
    },
    "last": {
     "utc": "2026-08-12T08:00:00+00:00",
@@ -139,7 +139,7 @@
     "eps": 3.69,
     "est": 3.31,
     "surprise": 11.5,
-    "recent": true
+    "recent": false
    }
   },
   {
@@ -160,7 +160,7 @@
     "eps": 0.52,
     "est": 0.4,
     "surprise": 30.29,
-    "recent": true
+    "recent": false
    }
   },
   {
@@ -244,7 +244,7 @@
     "eps": 1.89,
     "est": 1.96,
     "surprise": -3.47,
-    "recent": true
+    "recent": false
    }
   },
   {
