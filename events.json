@@ -87,6 +87,24 @@
     "信息截至北京时间 11 月 12 日"
    ],
    "link": "https://www.gov.cn/yaowen/liebiao/202512/content_7051058.htm"
+  },
+  {
+   "id": "lol-worlds-2026-final",
+   "title": "S16 全球总决赛：BLG vs Gen.G",
+   "tag": "电竞",
+   "utc": "2026-11-14T19:00:00Z",
+   "until": "2026-11-15T08:00:00Z",
+   "time_label": "凌晨3:00",
+   "confirmed": true,
+   "summary": "北京时间 11 月 15 日（周日）凌晨 3:00 开赛，纽约布鲁克林巴克莱中心，BO5",
+   "details": [
+    "对阵：LPL 的 Bilibili Gaming（BLG）对阵 LCK 的 Gen.G",
+    "当地时间为 11 月 14 日（周六）下午 2:00（美东），与北京时间相差 13 小时",
+    "半决赛结果：Gen.G 3-0 击败 IG，BLG 3-1 击败 T1",
+    "官方赛程在开赛时间先安排开幕式，第一局在开幕式之后开始；若打满五局会持续数小时",
+    "信息截至北京时间 11 月 12 日，以 LoL Esports 官方赛程为准"
+   ],
+   "link": "https://lolesports.com/en-US/lolesports/leagues/worlds"
   }
  ]
 }
