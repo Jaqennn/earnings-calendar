@@ -1,6 +1,6 @@
 {
- "updated_utc": "2026-11-15T02:11:20.562404+00:00",
- "updated_bj": "2026-11-15 10:11",
+ "updated_utc": "2026-11-16T02:25:20.253308+00:00",
+ "updated_bj": "2026-11-16 10:25",
  "items": [
   {
    "symbol": "RDDT",
@@ -83,7 +83,7 @@
     "eps": 0.84,
     "est": 0.39,
     "surprise": 115.04,
-    "recent": true
+    "recent": false
    }
   },
   {
