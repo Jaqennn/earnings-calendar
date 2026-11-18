@@ -1,6 +1,6 @@
 {
- "updated_utc": "2026-11-17T04:49:41.413053+00:00",
- "updated_bj": "2026-11-17 12:49",
+ "updated_utc": "2026-11-18T03:54:43.371130+00:00",
+ "updated_bj": "2026-11-18 11:54",
  "items": [
   {
    "symbol": "RDDT",
@@ -215,7 +215,7 @@
     "local_date": "2027-02-03",
     "session": "美股盘后",
     "confirmed": false,
-    "eps_est": 3.24
+    "eps_est": 3.2
    },
    "last": {
     "utc": "2026-10-28T20:00:00+00:00",
@@ -236,7 +236,7 @@
     "local_date": "2027-02-04",
     "session": "美股盘后",
     "confirmed": false,
-    "eps_est": 2.4
+    "eps_est": 2.39
    },
    "last": {
     "utc": "2026-10-29T20:00:00+00:00",
@@ -278,15 +278,15 @@
     "local_date": "2026-11-17",
     "session": "美股盘后",
     "confirmed": true,
-    "eps_est": 2.47
+    "eps_est": null
    },
    "last": {
-    "utc": "2026-08-26T20:00:00+00:00",
-    "bj": "2026-08-27",
-    "eps": 2.22,
-    "est": 2.09,
-    "surprise": 6.16,
-    "recent": false
+    "utc": "2026-11-17T21:00:00+00:00",
+    "bj": "2026-11-18",
+    "eps": 2.68,
+    "est": 2.47,
+    "surprise": 8.36,
+    "recent": true
    }
   },
   {
