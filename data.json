@@ -1,6 +1,6 @@
 {
- "updated_utc": "2026-11-23T03:13:50.101331+00:00",
- "updated_bj": "2026-11-23 11:13",
+ "updated_utc": "2026-11-24T06:29:34.649703+00:00",
+ "updated_bj": "2026-11-24 14:29",
  "items": [
   {
    "symbol": "RDDT",
@@ -194,7 +194,7 @@
     "local_date": "2027-01-27",
     "session": "美股盘后",
     "confirmed": false,
-    "eps_est": 4.86
+    "eps_est": 4.85
    },
    "last": {
     "utc": "2026-10-28T20:00:00+00:00",
@@ -236,7 +236,7 @@
     "local_date": "2027-02-04",
     "session": "美股盘后",
     "confirmed": false,
-    "eps_est": 2.39
+    "eps_est": 2.4
    },
    "last": {
     "utc": "2026-10-29T20:00:00+00:00",
